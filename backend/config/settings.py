@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------------------------
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DJANGO_ENV', default='development') == 'development'
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 # ---------------------------------------------------------------------------
 # Applications
@@ -36,18 +36,18 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # Phase 1: skeleton only (apps registered as they are implemented)
-    # 'apps.accounts',
-    # 'apps.products',
-    # 'apps.requirements',
-    # 'apps.recommendations',
-    # 'apps.reviews',
-    # 'apps.comparisons',
-    # 'apps.wishlist',
-    # 'apps.cart',
-    # 'apps.orders',
-    # 'apps.ai',
+    'apps.accounts',
+    'apps.products',
+    'apps.reviews',
+    'apps.requirements',
+    'apps.recommendations',
+    'apps.ai',
+    'apps.comparisons',
+    'apps.wishlist',
+    'apps.cart',
+    'apps.orders',
 ]
+
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -131,6 +131,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # ---------------------------------------------------------------------------
 # Default Primary Key
 # ---------------------------------------------------------------------------
@@ -146,8 +149,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'config.pagination.StandardResultsSetPagination',
     'PAGE_SIZE': 20,
+    'EXCEPTION_HANDLER': 'config.exceptions.custom_exception_handler',
 }
 
 # ---------------------------------------------------------------------------
@@ -166,8 +170,9 @@ SIMPLE_JWT = {
 # ---------------------------------------------------------------------------
 # CORS
 # ---------------------------------------------------------------------------
-CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=Csv(), default='http://localhost:5173')
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=Csv(), default='http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://127.0.0.1:3000')
 CORS_ALLOW_CREDENTIALS = True
+
 
 # ---------------------------------------------------------------------------
 # AI Configuration (placeholder — integrated in Phase 5)

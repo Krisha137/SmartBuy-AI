@@ -145,81 +145,43 @@ The project is built phase by phase. Each phase has a clear scope and deliverabl
 
 ---
 
-### ✅ Phase 1 — Project Foundation (Current)
-
-**Goal:** Set up the project skeleton so every future phase has a solid, consistent base.
-
-**Deliverables:**
+### ✅ Phase 1 — Project Foundation
 - Django project structure (`config/`, `apps/`, `services/`)
 - React app scaffold (Vite)
 - PostgreSQL connection configured
-- Documentation (`PROJECT_OVERVIEW.md`, `ARCHITECTURE.md`, `DEVELOPMENT_GUIDE.md`)
-- Git initialized with `.gitignore`
-- `README.md`
 
----
+### ✅ Phase 2 — Database Foundation
+- PostgreSQL `smartbuy_ai` database setup
+- Product, Review, Requirement models
 
-### ⏳ Phase 2 — Database Models
+### ✅ Phase 3 — Dataset Analysis & Schema Alignment
+- Approved `data/products.csv` (76 products) and `data/reviews.csv` (1,142 reviews) dataset mapping
 
-**Goal:** Define and migrate all core database models for the Laptop product category.
+### ✅ Phase 4 — Data Import & Verification
+- `import_products`, `import_reviews`, and `verify_dataset` management commands
 
-**Deliverables:**
-- `apps/products/models.py` — Laptop model with all specification fields
-- `apps/accounts/models.py` — Custom User model
-- Django migrations
-- Django admin registration for all models
-- Seed data script for sample laptops
+### ✅ Phase 5 — REST API Endpoints & Contract
+- Exposing stable DRF REST APIs for products, categories, segments, brands, reviews, requirements
 
----
+### ✅ Phase 6 — Deterministic Recommendation Engine
+- Multi-factor candidate filtering, spec normalization, weighted scoring, machine explanations
 
-### ⏳ Phase 3 — REST API Endpoints
+### ✅ Step 7 — AI Natural-Language Requirement Understanding
+- AI service abstraction (`AIService`), deterministic rule-based NLP parser (`RuleBasedRequirementParser`), INR budget parsing, strict JSON validation, server-side credential security, and smart search integration endpoints.
 
-**Goal:** Expose all product and user data via DRF REST API.
+### ✅ Step 8 — Review Intelligence
+- Hybrid AI/NLP review analysis service (`services.review_intelligence`), models (`ReviewAnalysis`, `ReviewThemeAnalysis`, `ProductReviewInsight`), offline precomputation management command (`analyze_reviews`), evidence-based theme extraction, deterministic confidence scoring, and REST API (`GET /api/v1/products/{product_id}/review-intelligence/`).
 
-**Deliverables:**
-- Product list / detail endpoints
-- Serializers for all models
-- API versioning (`/api/v1/`)
-- Pagination and filtering
-- Postman collection
+### ✅ Step 9 — Product Comparison System
+- Neutral side-by-side product comparison service (`services.comparison`), 2–4 laptop product limit, INR price gap calculation, spec matrix, precomputed review intelligence integration, optional recommendation fit scoring, difference detection, factual trade-off analyzer, and REST API (`POST /api/v1/products/compare/`).
 
----
+### ✅ Step 10 — AI Product Q&A ("Ask This Laptop")
+- Factual evidence-based product Q&A service (`services.ai.product_qa`), strict grounding on database specs and precomputed review intelligence (`ProductReviewInsight`), out-of-scope question classification, prompt injection protection, deterministic rule-based Q&A engine (`RuleBasedProductQAEngine`), zero hallucination, and REST API (`POST /api/v1/products/{product_id}/ask/`).
 
-### ⏳ Phase 4 — JWT Authentication
+### ✅ Step 11 — Professional React Frontend
+- Component-driven React 19 + Vite + Tailwind CSS v4 frontend, complete API integration (`apiClient`), INR price formatting, search page, recommendations view, product detail view with SpecGrid & ReviewIntelligenceCard, AI Product Q&A panel, sticky comparison drawer, and side-by-side comparison matrix page.
 
-**Goal:** Secure the API with JWT-based authentication.
 
-**Deliverables:**
-- User registration endpoint
-- Login / logout endpoints
-- Token refresh endpoint
-- Protected routes (middleware)
-- Frontend auth flow (token storage, auto-refresh)
-
----
-
-### ⏳ Phase 5 — AI Integration
-
-**Goal:** Integrate the LLM API to extract structured requirements from user input.
-
-**Deliverables:**
-- `apps/ai/` — LLM API client
-- Prompt engineering for requirement extraction
-- Structured requirements schema
-- `apps/requirements/models.py` — stored requirements per session
-- API endpoint: `POST /api/ai/parse-requirements/`
-
----
-
-### ⏳ Phase 6 — Recommendation Engine
-
-**Goal:** Build the recommendation engine that scores products against requirements.
-
-**Deliverables:**
-- `apps/recommendations/` — scoring logic
-- Weighted scoring algorithm
-- Match explanation generator
-- API endpoint: `POST /api/recommendations/`
 
 ---
 

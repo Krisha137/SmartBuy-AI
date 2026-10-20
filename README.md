@@ -123,7 +123,12 @@ cp ../.env.example ../.env
 # 6. Run migrations
 python manage.py migrate
 
-# 7. Start the server
+# 7. Import Data & Verify Database
+python manage.py import_products data/products.csv
+python manage.py import_reviews data/reviews.csv
+python manage.py verify_dataset
+
+# 8. Start the server
 python manage.py runserver
 # → http://localhost:8000
 ```
@@ -143,16 +148,16 @@ npm run dev
 
 | Phase | Description | Status |
 |---|---|---|
-| **Phase 1** | Project foundation & architecture | ✅ Current |
-| **Phase 2** | Database models — Laptops product catalog | ⏳ Planned |
-| **Phase 3** | REST API endpoints (CRUD) | ⏳ Planned |
-| **Phase 4** | JWT Authentication | ⏳ Planned |
-| **Phase 5** | AI integration & requirement extraction | ⏳ Planned |
-| **Phase 6** | Recommendation engine | ⏳ Planned |
-| **Phase 7** | React frontend — core UI | ⏳ Planned |
-| **Phase 8** | Wishlist, Cart, Orders | ⏳ Planned |
-| **Phase 9** | Review analysis | ⏳ Planned |
-| **Phase 10** | Deployment | ⏳ Planned |
+| **Phase 1** | Project foundation & architecture | ✅ Completed |
+| **Phase 2** | Database foundation — PostgreSQL & Django models | ✅ Completed |
+| **Phase 3** | Dataset analysis & schema alignment | ✅ Completed |
+| **Phase 4** | Data import & verification | ✅ Completed |
+| **Phase 5** | REST API endpoints & contract | ✅ Completed |
+| **Phase 6** | Deterministic recommendation engine | ✅ Completed |
+| **Phase 7** | AI requirement extraction | ⏳ Planned |
+| **Phase 8** | React frontend — core UI | ⏳ Planned |
+| **Phase 9** | Wishlist, Cart, Orders | ⏳ Planned |
+| **Phase 10** | Review analysis & AI Q&A | ⏳ Planned |
 
 ---
 
@@ -161,6 +166,12 @@ npm run dev
 - [Project Overview](docs/PROJECT_OVERVIEW.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Development Guide](docs/DEVELOPMENT_GUIDE.md)
+- [Database Design](docs/DATABASE_DESIGN.md)
+- [Data Dictionary](docs/DATA_DICTIONARY.md)
+- [Dataset Mapping](docs/DATASET_MAPPING.md)
+- [Data Import Guide](docs/DATA_IMPORT.md)
+- [API Contract](docs/API_CONTRACT.md)
+- [Recommendation Engine](docs/RECOMMENDATION_ENGINE.md)
 
 ---
 

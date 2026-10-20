@@ -37,8 +37,19 @@ db.sqlite3
 db.sqlite3-journal
 media/
 
-# Environment variables
+# Environment variables & secrets
 .env
+.env.*
+.env*.local
+*.env
+*.pem
+*.key
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# Scratch and debug files
+scratch/
 
 # Node / React
 node_modules/
